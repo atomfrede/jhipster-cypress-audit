@@ -9,13 +9,11 @@ describe('Audits', () => {
   
     it('should run performance audits using custom thresholds', () => {
       const customThresholds = {
-        performance: 50,
-        accessibility: 50,
-        seo: 70,
-        'first-contentful-paint': 2000,
-        'largest-contentful-paint': 3000,
-        'cumulative-layout-shift': 0.1,
-        'total-blocking-time': 500,
+        performance: 90,
+        accessibility: 90,
+        seo: 90,
+        'best-practices': 90,
+        pwa: 0,
       };
   
       const desktopConfig = {
