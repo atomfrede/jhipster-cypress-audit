@@ -7,7 +7,7 @@ describe('Audits', () => {
     //     cy.pa11y();
     // });
   
-    it('should run performance audits using custom thresholds', () => {
+    it('lighthouse audits', () => {
       const customThresholds = {
         performance: 90,
         accessibility: 90,

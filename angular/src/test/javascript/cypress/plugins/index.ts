@@ -22,19 +22,16 @@ module.exports = (on, config) => {
   // `config` is the resolved Cypress config
   on('before:browser:launch', (browser, launchOptions) => {
   
-    launchOptions.args.push('--output json --output html')
     prepareAudit(launchOptions);
     if (browser.name === 'chrome' && browser.isHeadless) {
       launchOptions.args.push('--disable-gpu');
       return launchOptions;
     }
-
-    
   });
 
   on('task', {
     lighthouse: lighthouse((lighthouseReport) => {
-      fs.writeFileSync('lhreport.html', ReportGenerator.generateReport(lighthouseReport.lhr, 'html'));
+      fs.writeFileSync('build/cypress/lhreport.html', ReportGenerator.generateReport(lighthouseReport.lhr, 'html'));
     }),
     pa11y: pa11y(),
   });

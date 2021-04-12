@@ -13,13 +13,25 @@
 /**
  * @type {Cypress.PluginConfig}
  */
+const { lighthouse, pa11y, prepareAudit } = require('cypress-audit');
+const fs = require('fs');
+const ReportGenerator = require('lighthouse/lighthouse-core/report/report-generator');
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
   on('before:browser:launch', (browser, launchOptions) => {
+    prepareAudit(launchOptions);
     if (browser.name === 'chrome' && browser.isHeadless) {
       launchOptions.args.push('--disable-gpu');
       return launchOptions;
     }
+  });
+
+  on('task', {
+    lighthouse: lighthouse(lighthouseReport => {
+      fs.writeFileSync('build/cypress/lhreport.html', ReportGenerator.generateReport(lighthouseReport.lhr, 'html'));
+    }),
+    pa11y: pa11y(),
   });
 };
