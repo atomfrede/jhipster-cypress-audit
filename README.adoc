@@ -1,0 +1,3 @@
+# jhipster-cypress-audit
+
+Sample code for https://atomfrede.gitlab.io/2021/04/automated-frontend-perfomance-test-with-lighthouse-for-jhipster/
