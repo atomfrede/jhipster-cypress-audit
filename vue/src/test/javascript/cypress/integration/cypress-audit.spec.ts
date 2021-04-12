@@ -19,6 +19,9 @@ describe('Audits', () => {
     const desktopConfig = {
       extends: 'lighthouse:default',
       formFactor: 'desktop',
+      throttling: {
+        cpuSlowdownMultiplier: 1,
+      },
       screenEmulation: { disabled: true },
     };
     cy.lighthouse(customThresholds, desktopConfig);
